@@ -10,7 +10,7 @@ class Biblioteca:
         self.__telefono = tel
         self.__listaLibros = []
 
-    def agregarLibro(self, unLibro):            # Se recibe la parte ya creada como PARÁMETRO.
+    def agregarLibro(self, unLibro):                                # Se recibe la parte ya creada como PARÁMETRO.
         self.__listaLibros.append(unLibro)
         print("Libro cargado.")
 
@@ -31,7 +31,7 @@ class Biblioteca:
             if self.__listaLibros[i].getISBN() == isbn:
                 encontrado = True
                 del self.__listaLibros[i]
-                return                                                          # Para que no siga iterando.
+                return                                              # Para que no siga iterando.
             
             else:
                 i += 1

@@ -61,7 +61,7 @@ class GestorBiblioteca:
     def mostrarInfoLibro(self, titulo):
         encontrado = False
         encabezado = False
-        for biblio in self.__listaBiblio:      # Con for en caso de que más de una biblioteca tenga el mismo libro
+        for biblio in self.__listaBiblio:                           # Con for en caso de que más de una biblioteca tenga el mismo libro
             libro = biblio.buscarLibroPorTitulo(titulo)
             if libro:
                 if not encabezado:
