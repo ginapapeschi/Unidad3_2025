@@ -53,3 +53,5 @@ if __name__ == '__main__':
             print("\nERROR - Opción inválida.")
         
         opcion = menu()
+    
+    print("\nPrograma finalizado.")

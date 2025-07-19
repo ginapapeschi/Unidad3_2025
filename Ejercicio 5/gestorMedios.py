@@ -62,20 +62,15 @@ class Lista:
         self.__tope += 1
         print("Medio cargado.")
 
-    def listarMedios(self):
-        aux = self.__comienzo               # Se utiliza un aux para no modificar el comienzo de la lista.
-        while aux != None:
-            print(aux.getDato())
-            aux = aux.getSiguiente()
-
     def cargarCSVMediosYProgramas(self):
         archivoMedios = open('medios.csv', encoding='utf-8')
         readerMedios = csv.reader(archivoMedios, delimiter=';')
         next(readerMedios)
+        # Se abre el segundo CSV.
         archivoProgramas = open('programa.csv', encoding='utf-8')
         readerProgramas = csv.reader(archivoProgramas, delimiter=';')
         next(readerProgramas)
-        listaProgramas = list(readerProgramas)
+        listaProgramas = list(readerProgramas) # Se lo guarda en una lista para luego poder recorrerla múltiples veces.
 
         for fila1 in readerMedios:
             if fila1[0] == 'T':
@@ -84,13 +79,14 @@ class Lista:
                 canal = int(fila1[3])
                 cantProgramas = int(fila1[4])
                 tele = Television(nombre, audiencia, canal, cantProgramas)
+                # Segundo for para buscar los programas cuyo segundo campo (canal) coincida con el canal del medio.
                 for fila2 in listaProgramas:
                     if fila2[1] == str(canal):
                         nombre = fila2[2]
                         horaInicio = fila2[3]
                         horaFin = fila2[4]
                         programa = Programa(nombre, horaInicio, horaFin)
-                        tele.agregarPrograma(programa)
+                        tele.agregarPrograma(programa) # Se agregan los programas a la instancia creada.
                 self.agregarMedio(tele)
 
             elif fila1[0] == 'R':
@@ -99,6 +95,7 @@ class Lista:
                 emisora = fila1[5]
                 frecuencia = fila1[6]
                 radio = Radio(nombre, audiencia, emisora, frecuencia)
+                # Se recorre la lista de programas comparando las frecuencias (frecuencia y fila2[1] "Canal"), ignorando mayúsculas, minúsculas y espacios.
                 for fila2 in listaProgramas:
                     if fila2[1].strip().lower() == frecuencia.strip().lower():
                         nombre = fila2[2]
@@ -115,6 +112,7 @@ class Lista:
                 periodicidad = fila1[8]
                 prensa = Prensa(nombre, audiencia, tipo, periodicidad)
                 self.agregarMedio(prensa)
+                # Se crea directamente el objeto Prensa, ya que no tiene programas asociados.
 
         archivoMedios.close()
         archivoProgramas.close()

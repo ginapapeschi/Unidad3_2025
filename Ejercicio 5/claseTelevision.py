@@ -45,7 +45,6 @@ class Television(Medio):
             else:
                 i += 1
 
-    
     # Inciso 5
     def mostrarProgramas(self):
         for programa in self.__listaProgramas:
