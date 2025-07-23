@@ -1,5 +1,3 @@
-from abc import abstractmethod
-
 class Paciente:
     __nombre: str
     __apellido: str
@@ -45,6 +43,5 @@ Valor de consulta: ${self.__valorConsulta:.2f}'''
             cls.__valorConsulta = valor
             print(f"Valor anterior: ${anterior:.2f} - Valor actual: ${valor:.2f}")
 
-    @abstractmethod
     def calcularImporteCobrado(self):
         return self.getValorConsulta()
